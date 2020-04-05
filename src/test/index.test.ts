@@ -1,5 +1,7 @@
-describe('test', () => {
+import return5 from '..';
+
+describe('return5', () => {
   it('should do its thing', () => {
-    expect(5).toBe(5);
+    expect(return5()).toBe(5);
   });
 });
