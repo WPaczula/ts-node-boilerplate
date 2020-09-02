@@ -26,6 +26,8 @@ module.exports = {
   },
   plugins: ['@typescript-eslint', 'jest', 'import'],
   rules: {
+    '@typescript-eslint/no-unused-vars': 'error',
+    'no-unused-vars': 'off',
     'linebreak-style': ['error', 'windows'],
     'import/extensions': [
       'error',

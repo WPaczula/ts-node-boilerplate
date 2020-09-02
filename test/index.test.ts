@@ -1,4 +1,4 @@
-import return5 from '..';
+import return5 from '../src';
 
 describe('return5', () => {
   it('should do its thing', () => {
