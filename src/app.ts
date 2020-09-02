@@ -2,6 +2,8 @@ import express from 'express';
 import morgan from 'morgan';
 import helmet from 'helmet';
 import cors from 'cors';
+import errorHandler from './middlewares/error-handler';
+import notFound from './middlewares/not-found';
 
 const makeServer = async (host: string, port: number) => {
   const app = express();
@@ -16,6 +18,10 @@ const makeServer = async (host: string, port: number) => {
 
   // routes
   app.use('/heart-beat', (req, res) => res.send('❤'));
+
+  // utils middlewares
+  app.use(notFound);
+  app.use(errorHandler);
 
   const server = app.listen(port, host, () => {
     if (process.env.NODE_ENV !== 'test') {
