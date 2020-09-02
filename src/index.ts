@@ -1,3 +1,7 @@
-const return5 = () => 5;
+import makeServer from './app';
 
-export default return5;
+const start = async () => {
+  await makeServer('localhost', 3000);
+};
+
+start();
