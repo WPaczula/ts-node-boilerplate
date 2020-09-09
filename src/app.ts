@@ -17,7 +17,7 @@ const makeServer = async (host: string, port: number) => {
   app.use(cors());
 
   // routes
-  app.get('/', (req, res) => res.send('✨ Server is alive ✨'));
+  app.get('/', (req, res) => res.send('✨ Node server is alive ✨'));
 
   // utils middlewares
   app.use(notFound);

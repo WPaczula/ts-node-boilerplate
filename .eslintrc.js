@@ -29,7 +29,6 @@ module.exports = {
     'prettier/prettier': ['error'],
     '@typescript-eslint/no-unused-vars': 'error',
     'no-unused-vars': 'off',
-    'linebreak-style': ['error', 'windows'],
     'import/extensions': [
       'error',
       'ignorePackages',

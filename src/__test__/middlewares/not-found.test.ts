@@ -1,5 +1,5 @@
-import notFound from '../../middlewares/not-found';
 import { NextFunction } from 'express';
+import notFound from '../../middlewares/not-found';
 import { mockRequest, mockResponse } from '../helpers/factory';
 
 describe('notFound', () => {

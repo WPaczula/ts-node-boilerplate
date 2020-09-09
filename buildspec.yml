@@ -1,0 +1,21 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - npm i
+  pre_build:
+    commands:
+      - npm run lint
+      - npm run test
+  build:
+    commands:
+      - npm run build
+  post_build:
+    commands:
+      - npm prune --production
+artifacts:
+  files:
+    - package.json
+    - dist/**/*
+    - node_modules/**/*
