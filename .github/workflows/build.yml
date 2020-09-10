@@ -34,7 +34,7 @@ jobs:
     env:
       CI: true
 
-  build:
+  build-docker-image:
     needs: [test]
     runs-on: [ubuntu-latest]
     steps:
@@ -42,5 +42,5 @@ jobs:
       - name: Build Docker image
         env:
           IMAGE_TAG: ${{ github.sha }}
-        run: docker build -t "$GITHUB_REPOSITORY:$IMAGE_TAG" .
+        run: docker build -t "wpaczula/ts-node-boilerplate:$IMAGE_TAG" .
      
