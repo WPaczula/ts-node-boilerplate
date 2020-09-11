@@ -1,14 +1,15 @@
 # This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: Build
+name: Build the application
 
 on:
   pull_request:
-    branches: [ master ]
+    branches: [master]
 
 jobs:
   test:
+    name: Test, lint, build and audit the app
     runs-on: ubuntu-latest
 
     strategy:
@@ -16,31 +17,22 @@ jobs:
         node-version: [14.x]
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - name: install
-      run: npm ci
-    - name: audit
-      run: npm audit
-    - name: lint
-      run: npm run lint
-    - name: test
-      run: npm test
-    - name: build
-      run: npm run build
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Install dependencies
+        run: npm ci
+      - name: Run npm audit
+        run: npm audit
+      - name: Lint the application
+        run: npm run lint
+      - name: Run tests
+        run: npm test
+      - name: Build typescript
+        run: npm run build
+      - name: Finish
+        run: echo Image will be automatically built on dockerhub
     env:
       CI: true
-
-  build-docker-image:
-    needs: [test]
-    runs-on: [ubuntu-latest]
-    steps:
-      - uses: actions/checkout@v2
-      - name: Build Docker image
-        env:
-          IMAGE_TAG: ${{ github.sha }}
-        run: docker build -t "wpaczula/ts-node-boilerplate:$IMAGE_TAG" .
-     
