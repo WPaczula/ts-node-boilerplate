@@ -32,7 +32,18 @@ jobs:
         run: npm test
       - name: Build typescript
         run: npm run build
-      - name: Finish
-        run: echo Image will be automatically built on dockerhub
     env:
       CI: true
+
+  build-docker-image:
+    needs: [test]
+    runs-on: [ubuntu-latest]
+    name: Build docker image
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build Docker image
+        env:
+          IMAGE_TAG: ${{ github.sha }}
+        run: docker build -t "wpaczula/ts-node-boilerplate:$IMAGE_TAG" .
+      - name: Finish
+        run: echo Image will be automatically built on dockerhub
